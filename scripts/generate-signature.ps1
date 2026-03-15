@@ -37,6 +37,31 @@ $graphics.Clear([System.Drawing.Color]::FromArgb(15, 23, 42))
 $background = [System.Drawing.Image]::FromFile($backgroundPath)
 $logo = [System.Drawing.Image]::FromFile($logoPath)
 
+function Draw-ContactItem {
+  param(
+    [System.Drawing.Graphics]$Graphics,
+    [System.Drawing.Brush]$IconBrush,
+    [System.Drawing.Brush]$TextBrush,
+    [System.Drawing.Font]$IconFont,
+    [System.Drawing.Font]$TextFont,
+    [string]$IconText,
+    [string]$Value,
+    [float]$X,
+    [float]$Y
+  )
+
+  $circleRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]($Y + 2)), ([single]18), ([single]18)
+  $Graphics.FillEllipse($IconBrush, $circleRect)
+
+  $iconFormat = New-Object System.Drawing.StringFormat
+  $iconFormat.Alignment = [System.Drawing.StringAlignment]::Center
+  $iconFormat.LineAlignment = [System.Drawing.StringAlignment]::Center
+  $Graphics.DrawString($IconText, $IconFont, $TextBrush, $circleRect, $iconFormat)
+
+  $textRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 26)), ([single]($Y - 1)), ([single]168), ([single]36)
+  $Graphics.DrawString($Value, $TextFont, $TextBrush, $textRect)
+}
+
 try {
   Draw-CoverImage -Graphics $graphics -Image $background -TargetWidth $width -TargetHeight $height
 
@@ -66,19 +91,19 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $nameFont = New-Object System.Drawing.Font('Segoe UI', 19.5, [System.Drawing.FontStyle]::Bold)
-  $roleFont = New-Object System.Drawing.Font('Segoe UI', 12.2, [System.Drawing.FontStyle]::Bold)
-  $bodyFont = New-Object System.Drawing.Font('Segoe UI', 9.8, [System.Drawing.FontStyle]::Bold)
-  $metaFont = New-Object System.Drawing.Font('Segoe UI', 8.6)
-  $contactLabelFont = New-Object System.Drawing.Font('Segoe UI', 9.2, [System.Drawing.FontStyle]::Bold)
-  $contactFont = New-Object System.Drawing.Font('Segoe UI', 9.2)
-  $companyFont = New-Object System.Drawing.Font('Segoe UI', 8.0, [System.Drawing.FontStyle]::Bold)
-  $companySmallFont = New-Object System.Drawing.Font('Segoe UI', 7.0, [System.Drawing.FontStyle]::Bold)
-  $disclaimerFont = New-Object System.Drawing.Font('Segoe UI', 7.3)
+  $contactIconFont = New-Object System.Drawing.Font('Calibri', 8.8, [System.Drawing.FontStyle]::Bold)
+  $contactFont = New-Object System.Drawing.Font('Calibri', 10.2)
+  $companyFont = New-Object System.Drawing.Font('Calibri', 8.6, [System.Drawing.FontStyle]::Bold)
+  $companySmallFont = New-Object System.Drawing.Font('Calibri', 7.6, [System.Drawing.FontStyle]::Bold)
+  $disclaimerFont = New-Object System.Drawing.Font('Calibri', 7.6)
+  $nameFont = New-Object System.Drawing.Font('Calibri', 21, [System.Drawing.FontStyle]::Bold)
+  $roleFont = New-Object System.Drawing.Font('Calibri', 13.2, [System.Drawing.FontStyle]::Bold)
+  $bodyFont = New-Object System.Drawing.Font('Calibri', 10.5, [System.Drawing.FontStyle]::Bold)
+  $metaFont = New-Object System.Drawing.Font('Calibri', 9.0)
 
   $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 20, 40, 136, 64))
   $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 24, 112)
-  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 24, 127)
+  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 24, 129)
 
   $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 236, 44)
   $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 238, 76)
@@ -90,16 +115,13 @@ try {
   $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 238, 192)
   $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 238, 210)
 
-  $graphics.DrawLine($linePen, 470, 36, 470, 232)
+  $graphics.DrawLine($linePen, 470, 36, 470, 244)
 
-  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 500, 40)
-  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 500, 58)
-  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 500, 96)
-  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 500, 114)
-  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 500, 152)
-  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 500, 170)
-  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 500, 208)
-  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 500, 226)
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'P' -Value '+230 5509 6001' -X 492 -Y 42
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'E' -Value 'mis@marinesurvey.mu' -X 492 -Y 82
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'W' -Value 'www.marinesurvey.mu' -X 492 -Y 122
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'A' -Value "2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis" -X 492 -Y 162
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'in' -Value 'Marine Independent Surveyor' -X 492 -Y 228
 
   $graphics.DrawLine($dividerPen, 28, 308, 690, 308)
 
