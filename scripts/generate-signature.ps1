@@ -48,18 +48,24 @@ function Draw-ContactItem {
     [string]$Value,
     [float]$X,
     [float]$Y,
-    [float]$TextHeight = 24
+    [float]$TextHeight = 24,
+    [switch]$UseCircle
   )
 
-  $circleRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]($Y + 2)), ([single]18), ([single]18)
-  $Graphics.FillEllipse($IconBrush, $circleRect)
+  if ($UseCircle) {
+    $iconRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]($Y + 2)), ([single]18), ([single]18)
+    $Graphics.FillEllipse($IconBrush, $iconRect)
 
-  $iconFormat = New-Object System.Drawing.StringFormat
-  $iconFormat.Alignment = [System.Drawing.StringAlignment]::Center
-  $iconFormat.LineAlignment = [System.Drawing.StringAlignment]::Center
-  $Graphics.DrawString($IconText, $IconFont, $TextBrush, $circleRect, $iconFormat)
+    $iconFormat = New-Object System.Drawing.StringFormat
+    $iconFormat.Alignment = [System.Drawing.StringAlignment]::Center
+    $iconFormat.LineAlignment = [System.Drawing.StringAlignment]::Center
+    $Graphics.DrawString($IconText, $IconFont, $TextBrush, $iconRect, $iconFormat)
+  } else {
+    $iconRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]$Y), ([single]18), ([single]18)
+    $Graphics.DrawString($IconText, $IconFont, $IconBrush, $iconRect)
+  }
 
-  $textRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 26)), ([single]($Y - 1)), ([single]168), ([single]$TextHeight)
+  $textRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 24)), ([single]($Y - 1)), ([single]168), ([single]$TextHeight)
   $Graphics.DrawString($Value, $TextFont, $TextBrush, $textRect)
 }
 
@@ -92,37 +98,33 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $contactIconFont = New-Object System.Drawing.Font('Arial', 8.4, [System.Drawing.FontStyle]::Bold)
-  $contactFont = New-Object System.Drawing.Font('Arial', 9.6)
-  $companyFont = New-Object System.Drawing.Font('Arial', 8.1, [System.Drawing.FontStyle]::Bold)
-  $companySmallFont = New-Object System.Drawing.Font('Arial', 7.1, [System.Drawing.FontStyle]::Bold)
+  $contactIconFont = New-Object System.Drawing.Font('Arial', 11, [System.Drawing.FontStyle]::Bold)
+  $contactFont = New-Object System.Drawing.Font('Arial', 9.8)
   $disclaimerFont = New-Object System.Drawing.Font('Arial', 7.1)
-  $nameFont = New-Object System.Drawing.Font('Arial', 20, [System.Drawing.FontStyle]::Bold)
-  $roleFont = New-Object System.Drawing.Font('Arial', 12.4, [System.Drawing.FontStyle]::Bold)
-  $bodyFont = New-Object System.Drawing.Font('Arial', 10.0, [System.Drawing.FontStyle]::Bold)
-  $metaFont = New-Object System.Drawing.Font('Arial', 8.8)
+  $nameFont = New-Object System.Drawing.Font('Arial', 18.5, [System.Drawing.FontStyle]::Bold)
+  $roleFont = New-Object System.Drawing.Font('Arial', 12.2, [System.Drawing.FontStyle]::Bold)
+  $bodyFont = New-Object System.Drawing.Font('Arial', 9.8, [System.Drawing.FontStyle]::Bold)
+  $metaFont = New-Object System.Drawing.Font('Arial', 8.7)
 
-  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 20, 40, 136, 64))
-  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 24, 112)
-  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 24, 129)
+  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 26, 56, 126, 58))
 
-  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 236, 46)
-  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 238, 78)
+  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 188, 50)
+  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 190, 82)
 
-  $bodyRect = New-Object System.Drawing.RectangleF(236, 114, 205, 72)
+  $bodyRect = New-Object System.Drawing.RectangleF(188, 118, 210, 82)
   $bodyFormat = New-Object System.Drawing.StringFormat
   $graphics.DrawString("For and on behalf of Marine Independent`nSurveyors Ltd, as agents only", $bodyFont, $whiteBrush, $bodyRect, $bodyFormat)
 
-  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 238, 194)
-  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 238, 212)
+  $graphics.DrawString('Business Registration No: C22186278', $metaFont, $slateBrush, 188, 202)
+  $graphics.DrawString('VAT Reg No: 28018844', $metaFont, $slateBrush, 188, 220)
 
-  $graphics.DrawLine($linePen, 470, 36, 470, 244)
+  $graphics.DrawLine($linePen, 430, 42, 430, 236)
 
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'P' -Value '+230 5509 6001' -X 492 -Y 44
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'E' -Value 'mis@marinesurvey.mu' -X 492 -Y 84
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'W' -Value 'www.marinesurvey.mu' -X 492 -Y 124
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'A' -Value "2 Avenue Flamboyant`nResidence Vallijee" -X 492 -Y 164 -TextHeight 34
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'in' -Value 'Marine Independent Surveyor' -X 492 -Y 214 -TextHeight 28
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'o' -Value '+230 5509 6001' -X 456 -Y 50 -UseCircle
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'E' -Value 'mis@marinesurvey.mu' -X 486 -Y 92
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'W' -Value 'www.marinesurvey.mu' -X 486 -Y 134
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'A' -Value "2 Avenue Flamboyant`nResidence Vallijee,`n11309 Port Louis" -X 486 -Y 176 -TextHeight 50
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'in' -Value 'Marine Independent Surveyor' -X 486 -Y 246 -TextHeight 28
 
   $graphics.DrawLine($dividerPen, 28, 308, 690, 308)
 
