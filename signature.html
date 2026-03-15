@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marine Email Signature</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 40px 16px;
+        background: #e2e8f0;
+        font-family: Arial, sans-serif;
+        color: #0f172a;
+      }
+
+      .shell {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      }
+
+      .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 24px;
+        border-bottom: 1px solid #e2e8f0;
+        background: #f8fafc;
+      }
+
+      .button {
+        border: 0;
+        border-radius: 999px;
+        background: #0f766e;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px 18px;
+        cursor: pointer;
+      }
+
+      .preview {
+        padding: 28px;
+        overflow-x: auto;
+      }
+
+      .note {
+        margin-top: 24px;
+        background: #ecfeff;
+        border: 1px solid #bae6fd;
+        border-radius: 20px;
+        padding: 20px 24px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="card">
+        <div class="toolbar">
+          <strong>Marine Email Signature</strong>
+          <button class="button" id="copyButton" type="button">Copy Signature</button>
+        </div>
+        <div class="preview">
+          <div id="signature-root" style="background:#fff; padding:20px;">
+            <table cellpadding="0" cellspacing="0" border="0" style="width:700px; border-collapse:collapse; font-family:Arial, sans-serif; background:#0f172a;">
+              <tr>
+                <td>
+                  <img
+                    src="https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/boat-banner.png"
+                    alt="Marine vessel banner"
+                    width="700"
+                    height="180"
+                    style="display:block; width:700px; height:180px; border:0;"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:28px 30px 24px 30px; background:#0f172a;">
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+                    <tr>
+                      <td width="58%" valign="top" style="padding-right:24px;">
+                        <img
+                          src="https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/marine-logo.png"
+                          alt="Marine Independent Surveyors Ltd"
+                          width="250"
+                          height="102"
+                          style="display:block; width:250px; height:102px; border:0; margin-bottom:18px;"
+                        />
+                        <p style="margin:0 0 6px 0; color:#ffffff; font-size:26px; line-height:30px; font-weight:bold;">Conchiano Evenor</p>
+                        <p style="margin:0 0 14px 0; color:#facc15; font-size:15px; line-height:18px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Surveyor</p>
+                        <p style="margin:0 0 14px 0; color:#cbd5e1; font-size:12px; line-height:18px;">
+                          For and on behalf of Marine Independent Surveyors Ltd, as agents only.
+                        </p>
+                        <p style="margin:0 0 4px 0; color:#cbd5e1; font-size:11px; line-height:16px;">
+                          Business Registration No: <span style="color:#ffffff; font-weight:bold;">C22186278</span>
+                        </p>
+                        <p style="margin:0; color:#cbd5e1; font-size:11px; line-height:16px;">
+                          VAT Reg No: <span style="color:#ffffff; font-weight:bold;">28018844</span>
+                        </p>
+                      </td>
+                      <td width="42%" valign="top" style="padding-left:24px; border-left:1px solid #facc15;">
+                        <p style="margin:0 0 10px 0; color:#facc15; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Mobile</p>
+                        <p style="margin:0 0 12px 0;"><a href="https://wa.me/23055096001" style="color:#ffffff; text-decoration:none; font-size:14px; line-height:18px;">+230 5509 6001</a></p>
+                        <p style="margin:0 0 10px 0; color:#facc15; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Email</p>
+                        <p style="margin:0 0 12px 0;"><a href="mailto:mis@marinesurvey.mu" style="color:#ffffff; text-decoration:none; font-size:14px; line-height:18px;">mis@marinesurvey.mu</a></p>
+                        <p style="margin:0 0 10px 0; color:#facc15; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Website</p>
+                        <p style="margin:0 0 12px 0;"><a href="https://www.marinesurvey.mu/" style="color:#ffffff; text-decoration:none; font-size:14px; line-height:18px;">www.marinesurvey.mu</a></p>
+                        <p style="margin:0 0 10px 0; color:#facc15; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Address</p>
+                        <p style="margin:0 0 14px 0; color:#ffffff; font-size:14px; line-height:20px;">
+                          2 Avenue Flamboyant<br />
+                          Residence Vallijee<br />
+                          11309 Port Louis
+                        </p>
+                        <p style="margin:0 0 10px 0; color:#facc15; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">LinkedIn</p>
+                        <p style="margin:0;"><a href="https://www.linkedin.com/in/marine-independent-surveyors-ltd-3223a53b5/" style="color:#ffffff; text-decoration:none; font-size:14px; line-height:18px;">Marine Independent Surveyors Ltd</a></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" style="padding-top:22px;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+                          <tr><td height="1" style="background:#334155; font-size:1px; line-height:1px;">&nbsp;</td></tr>
+                          <tr>
+                            <td style="padding-top:16px;">
+                              <p style="margin:0 0 6px 0; color:#94a3b8; font-size:9px; line-height:14px; text-align:justify;">
+                                Any views expressed in this email are those of the sender only. The content of this email is confidential and intended solely for the use of the recipient. If received in error, it should be removed from the system without being read, copied, distributed or disclosed.
+                              </p>
+                              <p style="margin:0 0 6px 0; color:#94a3b8; font-size:9px; line-height:14px; text-align:justify;">
+                                Every care has been taken for this email to reach the recipient free from computer viruses. No liability will be accepted for any loss or damage which may be caused.
+                              </p>
+                              <p style="margin:0; color:#94a3b8; font-size:9px; line-height:14px; text-align:justify;">
+                                We process your personal data in accordance with the Data Protection Act 2017, aligned with the General Data Protection Regulation.
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Open this file in a browser, click <strong>Copy Signature</strong>, then paste into Outlook. The
+        images come from your GitHub repo, so the repo must contain the files in <code>public/</code>.
+      </div>
+    </div>
+
+    <script>
+      const copyButton = document.getElementById('copyButton');
+      const signatureRoot = document.getElementById('signature-root');
+
+      copyButton.addEventListener('click', () => {
+        const range = document.createRange();
+        range.selectNode(signatureRoot);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+        copyButton.textContent = 'Copied';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy Signature';
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
