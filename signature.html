@@ -74,7 +74,8 @@
               <tr>
                 <td>
                   <img
-                    src="https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/boat-banner.png"
+                    data-remote-src="https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/boat-banner.png"
+                    src="./public/boat-banner.png"
                     alt="Marine vessel banner"
                     width="700"
                     height="180"
@@ -88,7 +89,8 @@
                     <tr>
                       <td width="58%" valign="top" style="padding-right:24px;">
                         <img
-                          src="https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/marine-logo.png"
+                          data-remote-src="https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/marine-logo.png"
+                          src="./public/marine-logo.png"
                           alt="Marine Independent Surveyors Ltd"
                           width="250"
                           height="102"
@@ -162,13 +164,24 @@
       const signatureRoot = document.getElementById('signature-root');
 
       copyButton.addEventListener('click', () => {
+        const copyNode = signatureRoot.cloneNode(true);
+        copyNode.querySelectorAll('img[data-remote-src]').forEach((img) => {
+          img.setAttribute('src', img.getAttribute('data-remote-src'));
+        });
+
+        copyNode.style.position = 'fixed';
+        copyNode.style.left = '-99999px';
+        copyNode.style.top = '0';
+        document.body.appendChild(copyNode);
+
         const range = document.createRange();
-        range.selectNode(signatureRoot);
+        range.selectNode(copyNode);
         const selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand('copy');
         selection.removeAllRanges();
+        document.body.removeChild(copyNode);
         copyButton.textContent = 'Copied';
         setTimeout(() => {
           copyButton.textContent = 'Copy Signature';
