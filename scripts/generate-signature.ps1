@@ -8,8 +8,8 @@ $logoPath = Join-Path $publicDir 'marine-logo.png'
 $backgroundPath = Join-Path $publicDir 'boat-background.png'
 $outputPath = Join-Path $publicDir 'signature-card.png'
 
-$width = 620
-$height = 330
+$width = 700
+$height = 372
 
 function Draw-CoverImage {
   param(
@@ -45,15 +45,15 @@ try {
   $fullOverlay.Dispose()
 
   $bottomOverlay = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(210, 15, 23, 42))
-  $graphics.FillRectangle($bottomOverlay, 0, 214, $width, 116)
+  $graphics.FillRectangle($bottomOverlay, 0, 242, $width, 130)
   $bottomOverlay.Dispose()
 
   $leftPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(105, 15, 23, 42))
-  $graphics.FillRectangle($leftPanel, 0, 90, 388, 124)
+  $graphics.FillRectangle($leftPanel, 0, 102, 438, 140)
   $leftPanel.Dispose()
 
   $rightPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(118, 15, 23, 42))
-  $graphics.FillRectangle($rightPanel, 392, 24, 210, 190)
+  $graphics.FillRectangle($rightPanel, 444, 28, 236, 214)
   $rightPanel.Dispose()
 
   $gold = [System.Drawing.Color]::FromArgb(234, 179, 8)
@@ -66,44 +66,44 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $nameFont = New-Object System.Drawing.Font('Arial', 15.5, [System.Drawing.FontStyle]::Bold)
-  $roleFont = New-Object System.Drawing.Font('Arial', 10.5, [System.Drawing.FontStyle]::Bold)
-  $bodyFont = New-Object System.Drawing.Font('Arial', 8.8, [System.Drawing.FontStyle]::Bold)
-  $metaFont = New-Object System.Drawing.Font('Arial', 7.4)
-  $contactLabelFont = New-Object System.Drawing.Font('Arial', 7.9, [System.Drawing.FontStyle]::Bold)
-  $contactFont = New-Object System.Drawing.Font('Arial', 8.0)
-  $companyFont = New-Object System.Drawing.Font('Arial', 6.6, [System.Drawing.FontStyle]::Bold)
-  $companySmallFont = New-Object System.Drawing.Font('Arial', 5.8, [System.Drawing.FontStyle]::Bold)
-  $disclaimerFont = New-Object System.Drawing.Font('Arial', 5.8)
+  $nameFont = New-Object System.Drawing.Font('Arial', 17.5, [System.Drawing.FontStyle]::Bold)
+  $roleFont = New-Object System.Drawing.Font('Arial', 11.8, [System.Drawing.FontStyle]::Bold)
+  $bodyFont = New-Object System.Drawing.Font('Arial', 9.8, [System.Drawing.FontStyle]::Bold)
+  $metaFont = New-Object System.Drawing.Font('Arial', 8.2)
+  $contactLabelFont = New-Object System.Drawing.Font('Arial', 8.8, [System.Drawing.FontStyle]::Bold)
+  $contactFont = New-Object System.Drawing.Font('Arial', 8.8)
+  $companyFont = New-Object System.Drawing.Font('Arial', 7.4, [System.Drawing.FontStyle]::Bold)
+  $companySmallFont = New-Object System.Drawing.Font('Arial', 6.5, [System.Drawing.FontStyle]::Bold)
+  $disclaimerFont = New-Object System.Drawing.Font('Arial', 6.3)
 
-  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 20, 33, 165, 60))
-  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 102, 50)
-  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 102, 62)
+  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 22, 38, 186, 67))
+  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 115, 57)
+  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 115, 71)
 
-  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 230, 33)
-  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 231, 59)
+  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 260, 37)
+  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 261, 67)
 
-  $bodyRect = New-Object System.Drawing.RectangleF(228, 84, 150, 48)
+  $bodyRect = New-Object System.Drawing.RectangleF(258, 95, 170, 58)
   $bodyFormat = New-Object System.Drawing.StringFormat
   $graphics.DrawString("For and on behalf of Marine Independent`nSurveyors Ltd, as agents only", $bodyFont, $whiteBrush, $bodyRect, $bodyFormat)
 
-  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 230, 140)
-  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 230, 155)
+  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 260, 158)
+  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 260, 176)
 
-  $graphics.DrawLine($linePen, 414, 29, 414, 188)
+  $graphics.DrawLine($linePen, 468, 33, 468, 212)
 
-  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 437, 33)
-  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 437, 47)
-  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 437, 74)
-  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 437, 88)
-  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 437, 115)
-  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 437, 129)
-  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 437, 156)
-  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 437, 170)
+  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 494, 37)
+  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 494, 53)
+  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 494, 87)
+  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 494, 103)
+  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 494, 137)
+  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 494, 153)
+  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 494, 187)
+  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 494, 203)
 
-  $graphics.DrawLine($dividerPen, 24, 248, 596, 248)
+  $graphics.DrawLine($dividerPen, 28, 280, 672, 280)
 
-  $disclaimerRect = New-Object System.Drawing.RectangleF(24, 258, 570, 48)
+  $disclaimerRect = New-Object System.Drawing.RectangleF(28, 292, 640, 56)
   $graphics.DrawString(
     "Any views expressed in this email are those of the sender only. The content of this email is confidential and intended solely for the use of the recipient(s). If received in error, it should be removed from the system without being read, copied, distributed or disclosed to anyone.`nEvery care has been taken for this email to reach the recipient(s) free from computer viruses. No liability will be accepted for any loss or damage which may be caused.`nWe process your personal data in accordance with the Data Protection Act 2017, which is itself aligned with the General Data Protection Regulation.",
     $disclaimerFont,

@@ -76,7 +76,7 @@ export default function App() {
                 cellSpacing="0"
                 border={0}
                 style={{
-                  width: '620px',
+                  width: '700px',
                   borderCollapse: 'collapse',
                   fontFamily: 'Arial, sans-serif',
                   backgroundColor: '#ffffff',
@@ -89,13 +89,13 @@ export default function App() {
                         src="/signature-card.png"
                         data-remote-src={signatureImageUrl}
                         alt="Marine email signature"
-                        width="620"
-                        height="330"
+                        width="700"
+                        height="372"
                         style={{
                           display: 'block',
-                          width: '620px',
-                          maxWidth: '620px',
-                          height: '330px',
+                          width: '700px',
+                          maxWidth: '700px',
+                          height: '372px',
                           border: '0',
                         }}
                       />
