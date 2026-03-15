@@ -48,12 +48,12 @@ try {
   $graphics.FillRectangle($bottomOverlay, 0, 260, $width, 170)
   $bottomOverlay.Dispose()
 
-  $leftPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(112, 15, 23, 42))
-  $graphics.FillRectangle($leftPanel, 0, 96, 452, 164)
+  $leftPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(118, 15, 23, 42))
+  $graphics.FillRectangle($leftPanel, 0, 96, 470, 164)
   $leftPanel.Dispose()
 
-  $rightPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(126, 15, 23, 42))
-  $graphics.FillRectangle($rightPanel, 470, 24, 222, 236)
+  $rightPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(132, 15, 23, 42))
+  $graphics.FillRectangle($rightPanel, 492, 24, 200, 236)
   $rightPanel.Dispose()
 
   $gold = [System.Drawing.Color]::FromArgb(234, 179, 8)
@@ -66,9 +66,9 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $nameFont = New-Object System.Drawing.Font('Segoe UI', 22, [System.Drawing.FontStyle]::Bold)
-  $roleFont = New-Object System.Drawing.Font('Segoe UI', 13, [System.Drawing.FontStyle]::Bold)
-  $bodyFont = New-Object System.Drawing.Font('Segoe UI', 10.2, [System.Drawing.FontStyle]::Bold)
+  $nameFont = New-Object System.Drawing.Font('Segoe UI', 19.5, [System.Drawing.FontStyle]::Bold)
+  $roleFont = New-Object System.Drawing.Font('Segoe UI', 12.2, [System.Drawing.FontStyle]::Bold)
+  $bodyFont = New-Object System.Drawing.Font('Segoe UI', 9.8, [System.Drawing.FontStyle]::Bold)
   $metaFont = New-Object System.Drawing.Font('Segoe UI', 8.6)
   $contactLabelFont = New-Object System.Drawing.Font('Segoe UI', 9.2, [System.Drawing.FontStyle]::Bold)
   $contactFont = New-Object System.Drawing.Font('Segoe UI', 9.2)
@@ -76,30 +76,30 @@ try {
   $companySmallFont = New-Object System.Drawing.Font('Segoe UI', 7.0, [System.Drawing.FontStyle]::Bold)
   $disclaimerFont = New-Object System.Drawing.Font('Segoe UI', 7.3)
 
-  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 18, 40, 118, 118))
-  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 118, 70)
-  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 118, 87)
+  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 20, 40, 136, 64))
+  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 24, 112)
+  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 24, 127)
 
-  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 250, 38)
-  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 252, 74)
+  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 236, 44)
+  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 238, 76)
 
-  $bodyRect = New-Object System.Drawing.RectangleF(248, 108, 185, 66)
+  $bodyRect = New-Object System.Drawing.RectangleF(236, 112, 205, 74)
   $bodyFormat = New-Object System.Drawing.StringFormat
   $graphics.DrawString("For and on behalf of Marine Independent`nSurveyors Ltd, as agents only", $bodyFont, $whiteBrush, $bodyRect, $bodyFormat)
 
-  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 252, 184)
-  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 252, 202)
+  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 238, 192)
+  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 238, 210)
 
-  $graphics.DrawLine($linePen, 454, 36, 454, 232)
+  $graphics.DrawLine($linePen, 470, 36, 470, 232)
 
-  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 482, 40)
-  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 482, 58)
-  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 482, 96)
-  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 482, 114)
-  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 482, 152)
-  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 482, 170)
-  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 482, 208)
-  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 482, 226)
+  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 500, 40)
+  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 500, 58)
+  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 500, 96)
+  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 500, 114)
+  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 500, 152)
+  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 500, 170)
+  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 500, 208)
+  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 500, 226)
 
   $graphics.DrawLine($dividerPen, 28, 308, 690, 308)
 
