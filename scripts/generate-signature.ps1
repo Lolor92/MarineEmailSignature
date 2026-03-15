@@ -40,33 +40,98 @@ $logo = [System.Drawing.Image]::FromFile($logoPath)
 function Draw-ContactItem {
   param(
     [System.Drawing.Graphics]$Graphics,
-    [System.Drawing.Brush]$IconBrush,
     [System.Drawing.Brush]$TextBrush,
-    [System.Drawing.Font]$IconFont,
     [System.Drawing.Font]$TextFont,
-    [string]$IconText,
     [string]$Value,
+    [string]$IconKind,
     [float]$X,
     [float]$Y,
-    [float]$TextHeight = 24,
-    [switch]$UseCircle
+    [float]$TextHeight = 24
   )
 
-  if ($UseCircle) {
-    $iconRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]($Y + 2)), ([single]18), ([single]18)
-    $Graphics.FillEllipse($IconBrush, $iconRect)
-
-    $iconFormat = New-Object System.Drawing.StringFormat
-    $iconFormat.Alignment = [System.Drawing.StringAlignment]::Center
-    $iconFormat.LineAlignment = [System.Drawing.StringAlignment]::Center
-    $Graphics.DrawString($IconText, $IconFont, $TextBrush, $iconRect, $iconFormat)
-  } else {
-    $iconRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]$Y), ([single]18), ([single]18)
-    $Graphics.DrawString($IconText, $IconFont, $IconBrush, $iconRect)
-  }
+  $iconRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]$Y), ([single]18), ([single]18)
+  Draw-Icon -Graphics $Graphics -Kind $IconKind -X $X -Y $Y
 
   $textRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 24)), ([single]($Y - 1)), ([single]168), ([single]$TextHeight)
   $Graphics.DrawString($Value, $TextFont, $TextBrush, $textRect)
+}
+
+function Draw-Icon {
+  param(
+    [System.Drawing.Graphics]$Graphics,
+    [string]$Kind,
+    [float]$X,
+    [float]$Y
+  )
+
+  $gold = [System.Drawing.Color]::FromArgb(234, 179, 8)
+  $green = [System.Drawing.Color]::FromArgb(34, 197, 94)
+  $blue = [System.Drawing.Color]::FromArgb(14, 165, 233)
+  $white = [System.Drawing.Color]::White
+
+  $goldPen = New-Object System.Drawing.Pen($gold, 1.6)
+  $goldBrush = New-Object System.Drawing.SolidBrush($gold)
+  $whiteBrush = New-Object System.Drawing.SolidBrush($white)
+  $greenBrush = New-Object System.Drawing.SolidBrush($green)
+  $blueBrush = New-Object System.Drawing.SolidBrush($blue)
+
+  try {
+    switch ($Kind) {
+      'whatsapp' {
+        $Graphics.FillEllipse($greenBrush, $X + 1, $Y + 1, 14, 14)
+        $phoneFont = New-Object System.Drawing.Font('Segoe UI Symbol', 7.5, [System.Drawing.FontStyle]::Bold)
+        try {
+          $fmt = New-Object System.Drawing.StringFormat
+          $fmt.Alignment = [System.Drawing.StringAlignment]::Center
+          $fmt.LineAlignment = [System.Drawing.StringAlignment]::Center
+          $rect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]$Y), ([single]16), ([single]16)
+          $Graphics.DrawString('☎', $phoneFont, $whiteBrush, $rect, $fmt)
+        } finally {
+          $phoneFont.Dispose()
+        }
+      }
+      'email' {
+        $Graphics.DrawRectangle($goldPen, $X + 1, $Y + 3, 14, 10)
+        $Graphics.DrawLine($goldPen, $X + 1, $Y + 3, $X + 8, $Y + 9)
+        $Graphics.DrawLine($goldPen, $X + 15, $Y + 3, $X + 8, $Y + 9)
+      }
+      'website' {
+        $Graphics.DrawEllipse($goldPen, $X + 1, $Y + 1, 14, 14)
+        $Graphics.DrawLine($goldPen, $X + 8, $Y + 1, $X + 8, $Y + 15)
+        $Graphics.DrawArc($goldPen, $X + 4, $Y + 1, 8, 14, 90, 180)
+        $Graphics.DrawArc($goldPen, $X + 4, $Y + 1, 8, 14, 270, 180)
+        $Graphics.DrawLine($goldPen, $X + 2, $Y + 8, $X + 14, $Y + 8)
+      }
+      'address' {
+        $Graphics.DrawEllipse($goldPen, $X + 4, $Y + 1, 8, 8)
+        $pinPoints = New-Object 'System.Drawing.PointF[]' 3
+        $pinPoints[0] = New-Object System.Drawing.PointF -ArgumentList ([single]($X + 8)), ([single]($Y + 16))
+        $pinPoints[1] = New-Object System.Drawing.PointF -ArgumentList ([single]($X + 3)), ([single]($Y + 8))
+        $pinPoints[2] = New-Object System.Drawing.PointF -ArgumentList ([single]($X + 13)), ([single]($Y + 8))
+        $Graphics.FillPolygon($goldBrush, $pinPoints)
+      }
+      'linkedin' {
+        $Graphics.FillRectangle($blueBrush, $X + 1, $Y + 1, 14, 14)
+        $liFont = New-Object System.Drawing.Font('Arial', 6.8, [System.Drawing.FontStyle]::Bold)
+        try {
+          $fmt = New-Object System.Drawing.StringFormat
+          $fmt.Alignment = [System.Drawing.StringAlignment]::Center
+          $fmt.LineAlignment = [System.Drawing.StringAlignment]::Center
+          $rect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 1)), ([single]($Y + 1)), ([single]14), ([single]14)
+          $Graphics.DrawString('in', $liFont, $whiteBrush, $rect, $fmt)
+        } finally {
+          $liFont.Dispose()
+        }
+      }
+    }
+  }
+  finally {
+    $goldPen.Dispose()
+    $goldBrush.Dispose()
+    $whiteBrush.Dispose()
+    $greenBrush.Dispose()
+    $blueBrush.Dispose()
+  }
 }
 
 try {
@@ -98,7 +163,6 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $contactIconFont = New-Object System.Drawing.Font('Arial', 11, [System.Drawing.FontStyle]::Bold)
   $contactFont = New-Object System.Drawing.Font('Arial', 9.8)
   $disclaimerFont = New-Object System.Drawing.Font('Arial', 7.1)
   $nameFont = New-Object System.Drawing.Font('Arial', 18.5, [System.Drawing.FontStyle]::Bold)
@@ -120,11 +184,11 @@ try {
 
   $graphics.DrawLine($linePen, 430, 42, 430, 236)
 
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'o' -Value '+230 5509 6001' -X 456 -Y 50 -UseCircle
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'E' -Value 'mis@marinesurvey.mu' -X 486 -Y 92
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'W' -Value 'www.marinesurvey.mu' -X 486 -Y 134
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'A' -Value "2 Avenue Flamboyant`nResidence Vallijee,`n11309 Port Louis" -X 486 -Y 176 -TextHeight 50
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'in' -Value 'Marine Independent Surveyor' -X 486 -Y 246 -TextHeight 28
+  Draw-ContactItem -Graphics $graphics -TextBrush $whiteBrush -TextFont $contactFont -IconKind 'whatsapp' -Value '+230 5509 6001' -X 456 -Y 50
+  Draw-ContactItem -Graphics $graphics -TextBrush $whiteBrush -TextFont $contactFont -IconKind 'email' -Value 'mis@marinesurvey.mu' -X 486 -Y 92
+  Draw-ContactItem -Graphics $graphics -TextBrush $whiteBrush -TextFont $contactFont -IconKind 'website' -Value 'www.marinesurvey.mu' -X 486 -Y 134
+  Draw-ContactItem -Graphics $graphics -TextBrush $whiteBrush -TextFont $contactFont -IconKind 'address' -Value "2 Avenue Flamboyant`nResidence Vallijee,`n11309 Port Louis" -X 486 -Y 176 -TextHeight 50
+  Draw-ContactItem -Graphics $graphics -TextBrush $whiteBrush -TextFont $contactFont -IconKind 'linkedin' -Value 'Marine Independent Surveyor' -X 486 -Y 246 -TextHeight 28
 
   $graphics.DrawLine($dividerPen, 28, 308, 690, 308)
 
