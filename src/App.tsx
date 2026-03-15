@@ -39,7 +39,7 @@ export default function App() {
   };
 
   const signatureImageUrl =
-    'https://cdn.jsdelivr.net/gh/Lolor92/MarineEmailSignature@main/public/signature-card.png';
+    'https://raw.githubusercontent.com/Lolor92/MarineEmailSignature/main/public/signature-card.png';
 
   return (
     <div className="min-h-screen bg-slate-100 px-4 py-10 font-sans sm:px-6 lg:px-8">
@@ -86,7 +86,7 @@ export default function App() {
                   <tr>
                     <td style={{ padding: '0 0 12px 0' }}>
                       <img
-                        src={signatureImageUrl}
+                        src="/signature-card.png"
                         data-remote-src={signatureImageUrl}
                         alt="Marine email signature"
                         width="620"
