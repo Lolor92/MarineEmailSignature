@@ -1,20 +1,16 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Marine Email Signature
 
-# Run and deploy your AI Studio app
+This repo hosts the email signature preview app and the public image assets used by the signature.
 
-This contains everything you need to run your app locally.
+## Assets
 
-View your app in AI Studio: https://ai.studio/apps/a8ce24a4-d748-4908-8fa8-118deb9c1c7a
+- `public/marine-logo.png`
+- `public/boat-background.png`
 
-## Run Locally
+These files are referenced with GitHub raw URLs in the signature HTML so the images load when pasted into email clients.
 
-**Prerequisites:**  Node.js
+## Local usage
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Install dependencies with `npm install`.
+2. Start the preview app with `npm run dev`.
+3. Click `Copy Signature` and paste it into your email signature editor.
