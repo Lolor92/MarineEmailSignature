@@ -8,8 +8,8 @@ $logoPath = Join-Path $publicDir 'marine-logo.png'
 $backgroundPath = Join-Path $publicDir 'boat-background.png'
 $outputPath = Join-Path $publicDir 'signature-card.png'
 
-$width = 700
-$height = 372
+$width = 720
+$height = 430
 
 function Draw-CoverImage {
   param(
@@ -44,16 +44,16 @@ try {
   $graphics.FillRectangle($fullOverlay, 0, 0, $width, $height)
   $fullOverlay.Dispose()
 
-  $bottomOverlay = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(210, 15, 23, 42))
-  $graphics.FillRectangle($bottomOverlay, 0, 242, $width, 130)
+  $bottomOverlay = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(218, 15, 23, 42))
+  $graphics.FillRectangle($bottomOverlay, 0, 260, $width, 170)
   $bottomOverlay.Dispose()
 
-  $leftPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(105, 15, 23, 42))
-  $graphics.FillRectangle($leftPanel, 0, 102, 438, 140)
+  $leftPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(112, 15, 23, 42))
+  $graphics.FillRectangle($leftPanel, 0, 96, 452, 164)
   $leftPanel.Dispose()
 
-  $rightPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(118, 15, 23, 42))
-  $graphics.FillRectangle($rightPanel, 444, 28, 236, 214)
+  $rightPanel = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(126, 15, 23, 42))
+  $graphics.FillRectangle($rightPanel, 470, 24, 222, 236)
   $rightPanel.Dispose()
 
   $gold = [System.Drawing.Color]::FromArgb(234, 179, 8)
@@ -66,46 +66,46 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $nameFont = New-Object System.Drawing.Font('Arial', 17.5, [System.Drawing.FontStyle]::Bold)
-  $roleFont = New-Object System.Drawing.Font('Arial', 11.8, [System.Drawing.FontStyle]::Bold)
-  $bodyFont = New-Object System.Drawing.Font('Arial', 9.8, [System.Drawing.FontStyle]::Bold)
-  $metaFont = New-Object System.Drawing.Font('Arial', 8.2)
-  $contactLabelFont = New-Object System.Drawing.Font('Arial', 8.8, [System.Drawing.FontStyle]::Bold)
-  $contactFont = New-Object System.Drawing.Font('Arial', 8.8)
-  $companyFont = New-Object System.Drawing.Font('Arial', 7.4, [System.Drawing.FontStyle]::Bold)
-  $companySmallFont = New-Object System.Drawing.Font('Arial', 6.5, [System.Drawing.FontStyle]::Bold)
-  $disclaimerFont = New-Object System.Drawing.Font('Arial', 6.3)
+  $nameFont = New-Object System.Drawing.Font('Segoe UI', 22, [System.Drawing.FontStyle]::Bold)
+  $roleFont = New-Object System.Drawing.Font('Segoe UI', 13, [System.Drawing.FontStyle]::Bold)
+  $bodyFont = New-Object System.Drawing.Font('Segoe UI', 10.2, [System.Drawing.FontStyle]::Bold)
+  $metaFont = New-Object System.Drawing.Font('Segoe UI', 8.6)
+  $contactLabelFont = New-Object System.Drawing.Font('Segoe UI', 9.2, [System.Drawing.FontStyle]::Bold)
+  $contactFont = New-Object System.Drawing.Font('Segoe UI', 9.2)
+  $companyFont = New-Object System.Drawing.Font('Segoe UI', 8.0, [System.Drawing.FontStyle]::Bold)
+  $companySmallFont = New-Object System.Drawing.Font('Segoe UI', 7.0, [System.Drawing.FontStyle]::Bold)
+  $disclaimerFont = New-Object System.Drawing.Font('Segoe UI', 7.3)
 
-  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 22, 38, 186, 67))
-  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 115, 57)
-  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 115, 71)
+  $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 18, 40, 118, 118))
+  $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 118, 70)
+  $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 118, 87)
 
-  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 260, 37)
-  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 261, 67)
+  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 250, 38)
+  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 252, 74)
 
-  $bodyRect = New-Object System.Drawing.RectangleF(258, 95, 170, 58)
+  $bodyRect = New-Object System.Drawing.RectangleF(248, 108, 185, 66)
   $bodyFormat = New-Object System.Drawing.StringFormat
   $graphics.DrawString("For and on behalf of Marine Independent`nSurveyors Ltd, as agents only", $bodyFont, $whiteBrush, $bodyRect, $bodyFormat)
 
-  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 260, 158)
-  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 260, 176)
+  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 252, 184)
+  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 252, 202)
 
-  $graphics.DrawLine($linePen, 468, 33, 468, 212)
+  $graphics.DrawLine($linePen, 454, 36, 454, 232)
 
-  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 494, 37)
-  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 494, 53)
-  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 494, 87)
-  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 494, 103)
-  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 494, 137)
-  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 494, 153)
-  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 494, 187)
-  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 494, 203)
+  $graphics.DrawString('MOBILE', $contactLabelFont, $goldBrush, 482, 40)
+  $graphics.DrawString('+230 5509 6001', $contactFont, $whiteBrush, 482, 58)
+  $graphics.DrawString('EMAIL', $contactLabelFont, $goldBrush, 482, 96)
+  $graphics.DrawString('mis@marinesurvey.mu', $contactFont, $whiteBrush, 482, 114)
+  $graphics.DrawString('WEBSITE', $contactLabelFont, $goldBrush, 482, 152)
+  $graphics.DrawString('www.marinesurvey.mu', $contactFont, $whiteBrush, 482, 170)
+  $graphics.DrawString('ADDRESS', $contactLabelFont, $goldBrush, 482, 208)
+  $graphics.DrawString("2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis", $contactFont, $whiteBrush, 482, 226)
 
-  $graphics.DrawLine($dividerPen, 28, 280, 672, 280)
+  $graphics.DrawLine($dividerPen, 28, 308, 690, 308)
 
-  $disclaimerRect = New-Object System.Drawing.RectangleF(28, 292, 640, 56)
+  $disclaimerRect = New-Object System.Drawing.RectangleF(28, 322, 662, 78)
   $graphics.DrawString(
-    "Any views expressed in this email are those of the sender only. The content of this email is confidential and intended solely for the use of the recipient(s). If received in error, it should be removed from the system without being read, copied, distributed or disclosed to anyone.`nEvery care has been taken for this email to reach the recipient(s) free from computer viruses. No liability will be accepted for any loss or damage which may be caused.`nWe process your personal data in accordance with the Data Protection Act 2017, which is itself aligned with the General Data Protection Regulation.",
+    "Any views expressed in this email are those of the sender only. This email is confidential and intended solely for the recipient(s). If received in error, delete it without reading, copying, distributing or disclosing it.`nEvery care has been taken to ensure this email is free from viruses. No liability is accepted for any loss or damage caused.`nWe process personal data in accordance with the Data Protection Act 2017 and the General Data Protection Regulation.",
     $disclaimerFont,
     $slateBrush,
     $disclaimerRect
