@@ -102,7 +102,7 @@ export default function App() {
                     </td>
                   </tr>
                   <tr>
-                    <td style={{ padding: '0' }}>
+                    <td style={{ padding: '2px 0 0 0' }}>
                       <table
                         cellPadding="0"
                         cellSpacing="0"
@@ -117,74 +117,40 @@ export default function App() {
                           <tr>
                             <td
                               style={{
-                                padding: '0 0 6px 0',
+                                padding: '0 0 8px 0',
                                 color: '#0f172a',
-                                fontSize: '13px',
-                                lineHeight: '1.5',
+                                fontSize: '12px',
+                                lineHeight: '1.4',
                               }}
                             >
-                              <strong style={{ color: '#0f172a' }}>Phone:</strong>{' '}
                               <a
                                 href="https://wa.me/23055096001"
                                 style={{ color: '#0369a1', textDecoration: 'none' }}
                               >
-                                +230 5509 6001
+                                Call
                               </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td
-                              style={{
-                                padding: '0 0 6px 0',
-                                color: '#0f172a',
-                                fontSize: '13px',
-                                lineHeight: '1.5',
-                              }}
-                            >
-                              <strong style={{ color: '#0f172a' }}>Email:</strong>{' '}
+                              <span style={{ color: '#94a3b8', padding: '0 8px' }}>|</span>
                               <a
                                 href="mailto:mis@marinesurvey.mu"
                                 style={{ color: '#0369a1', textDecoration: 'none' }}
                               >
-                                mis@marinesurvey.mu
+                                Email
                               </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td
-                              style={{
-                                padding: '0 0 6px 0',
-                                color: '#0f172a',
-                                fontSize: '13px',
-                                lineHeight: '1.5',
-                              }}
-                            >
-                              <strong style={{ color: '#0f172a' }}>Website:</strong>{' '}
+                              <span style={{ color: '#94a3b8', padding: '0 8px' }}>|</span>
                               <a
                                 href="https://www.marinesurvey.mu/"
                                 style={{ color: '#0369a1', textDecoration: 'none' }}
                               >
-                                www.marinesurvey.mu
+                                Website
                               </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td
-                              style={{
-                                padding: '0 0 6px 0',
-                                color: '#0f172a',
-                                fontSize: '13px',
-                                lineHeight: '1.5',
-                              }}
-                            >
-                              <strong style={{ color: '#0f172a' }}>LinkedIn:</strong>{' '}
+                              <span style={{ color: '#94a3b8', padding: '0 8px' }}>|</span>
                               <a
                                 href="https://www.linkedin.com/in/marine-independent-surveyors-ltd-3223a53b5/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{ color: '#0369a1', textDecoration: 'none' }}
                               >
-                                Marine Independent Surveyor
+                                LinkedIn
                               </a>
                             </td>
                           </tr>
@@ -194,11 +160,10 @@ export default function App() {
                                 padding: '0',
                                 color: '#475569',
                                 fontSize: '12px',
-                                lineHeight: '1.5',
+                                lineHeight: '1.4',
                               }}
                             >
-                              <strong style={{ color: '#0f172a' }}>Address:</strong> 2 Avenue
-                              Flamboyant, Residence Vallijee, 11309 Port Louis
+                              2 Avenue Flamboyant, Residence Vallijee, 11309 Port Louis
                             </td>
                           </tr>
                         </tbody>
