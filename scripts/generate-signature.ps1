@@ -47,7 +47,8 @@ function Draw-ContactItem {
     [string]$IconText,
     [string]$Value,
     [float]$X,
-    [float]$Y
+    [float]$Y,
+    [float]$TextHeight = 24
   )
 
   $circleRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]$X), ([single]($Y + 2)), ([single]18), ([single]18)
@@ -58,7 +59,7 @@ function Draw-ContactItem {
   $iconFormat.LineAlignment = [System.Drawing.StringAlignment]::Center
   $Graphics.DrawString($IconText, $IconFont, $TextBrush, $circleRect, $iconFormat)
 
-  $textRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 26)), ([single]($Y - 1)), ([single]168), ([single]36)
+  $textRect = New-Object System.Drawing.RectangleF -ArgumentList ([single]($X + 26)), ([single]($Y - 1)), ([single]168), ([single]$TextHeight)
   $Graphics.DrawString($Value, $TextFont, $TextBrush, $textRect)
 }
 
@@ -91,37 +92,37 @@ try {
   $linePen = New-Object System.Drawing.Pen($gold, 2)
   $dividerPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(110, 148, 163, 184), 1)
 
-  $contactIconFont = New-Object System.Drawing.Font('Calibri', 8.8, [System.Drawing.FontStyle]::Bold)
-  $contactFont = New-Object System.Drawing.Font('Calibri', 10.2)
-  $companyFont = New-Object System.Drawing.Font('Calibri', 8.6, [System.Drawing.FontStyle]::Bold)
-  $companySmallFont = New-Object System.Drawing.Font('Calibri', 7.6, [System.Drawing.FontStyle]::Bold)
-  $disclaimerFont = New-Object System.Drawing.Font('Calibri', 7.6)
-  $nameFont = New-Object System.Drawing.Font('Calibri', 21, [System.Drawing.FontStyle]::Bold)
-  $roleFont = New-Object System.Drawing.Font('Calibri', 13.2, [System.Drawing.FontStyle]::Bold)
-  $bodyFont = New-Object System.Drawing.Font('Calibri', 10.5, [System.Drawing.FontStyle]::Bold)
-  $metaFont = New-Object System.Drawing.Font('Calibri', 9.0)
+  $contactIconFont = New-Object System.Drawing.Font('Arial', 8.4, [System.Drawing.FontStyle]::Bold)
+  $contactFont = New-Object System.Drawing.Font('Arial', 9.6)
+  $companyFont = New-Object System.Drawing.Font('Arial', 8.1, [System.Drawing.FontStyle]::Bold)
+  $companySmallFont = New-Object System.Drawing.Font('Arial', 7.1, [System.Drawing.FontStyle]::Bold)
+  $disclaimerFont = New-Object System.Drawing.Font('Arial', 7.1)
+  $nameFont = New-Object System.Drawing.Font('Arial', 20, [System.Drawing.FontStyle]::Bold)
+  $roleFont = New-Object System.Drawing.Font('Arial', 12.4, [System.Drawing.FontStyle]::Bold)
+  $bodyFont = New-Object System.Drawing.Font('Arial', 10.0, [System.Drawing.FontStyle]::Bold)
+  $metaFont = New-Object System.Drawing.Font('Arial', 8.8)
 
   $graphics.DrawImage($logo, (New-Object System.Drawing.Rectangle 20, 40, 136, 64))
   $graphics.DrawString('MARINE INDEPENDENT', $companyFont, $goldBrush, 24, 112)
   $graphics.DrawString('SURVEYORS LTD', $companySmallFont, $whiteBrush, 24, 129)
 
-  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 236, 44)
-  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 238, 76)
+  $graphics.DrawString('Conchiano Evenor', $nameFont, $whiteBrush, 236, 46)
+  $graphics.DrawString('Surveyor', $roleFont, $goldBrush, 238, 78)
 
-  $bodyRect = New-Object System.Drawing.RectangleF(236, 112, 205, 74)
+  $bodyRect = New-Object System.Drawing.RectangleF(236, 114, 205, 72)
   $bodyFormat = New-Object System.Drawing.StringFormat
   $graphics.DrawString("For and on behalf of Marine Independent`nSurveyors Ltd, as agents only", $bodyFont, $whiteBrush, $bodyRect, $bodyFormat)
 
-  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 238, 192)
-  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 238, 210)
+  $graphics.DrawString('Business Reg. No: C22186278', $metaFont, $slateBrush, 238, 194)
+  $graphics.DrawString('VAT Reg. No: 28018844', $metaFont, $slateBrush, 238, 212)
 
   $graphics.DrawLine($linePen, 470, 36, 470, 244)
 
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'P' -Value '+230 5509 6001' -X 492 -Y 42
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'E' -Value 'mis@marinesurvey.mu' -X 492 -Y 82
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'W' -Value 'www.marinesurvey.mu' -X 492 -Y 122
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'A' -Value "2 Avenue Flamboyant`nResidence Vallijee`n11309 Port Louis" -X 492 -Y 162
-  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'in' -Value 'Marine Independent Surveyor' -X 492 -Y 228
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'P' -Value '+230 5509 6001' -X 492 -Y 44
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'E' -Value 'mis@marinesurvey.mu' -X 492 -Y 84
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'W' -Value 'www.marinesurvey.mu' -X 492 -Y 124
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'A' -Value "2 Avenue Flamboyant`nResidence Vallijee" -X 492 -Y 164 -TextHeight 34
+  Draw-ContactItem -Graphics $graphics -IconBrush $goldBrush -TextBrush $whiteBrush -IconFont $contactIconFont -TextFont $contactFont -IconText 'in' -Value 'Marine Independent Surveyor' -X 492 -Y 214 -TextHeight 28
 
   $graphics.DrawLine($dividerPen, 28, 308, 690, 308)
 
