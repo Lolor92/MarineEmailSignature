@@ -86,7 +86,7 @@ export default function App() {
                   <tr>
                     <td style={{ padding: '0 0 12px 0' }}>
                       <img
-                        src="/signature-card.png"
+                        src={signatureImageUrl}
                         data-remote-src={signatureImageUrl}
                         alt="Marine email signature"
                         width="620"
